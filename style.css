@@ -1,0 +1,1131 @@
+/* 
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme-child/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 2.0.0
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* Add your custom styles here */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.gdlr-title-font {
+  font-family: "Fjalla One";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.gdlr-title,
+.gdlr-title a {
+  color: #454545;
+}
+
+body {
+  color: #909090;
+}
+
+.block-picker p {
+  font-size: 14px;
+}
+
+body,
+input,
+textarea,
+select,
+.gdlr-reservation-room .gdlr-reservation-room-info a {
+  font-family: "Open Sans";
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.gdlr-item {
+  margin: 0px 15px 20px;
+  min-height: 1px;
+  width: 100%;
+}
+
+html .woocommerce div.product form.cart,
+html .woocommerce #content div.product form.cart,
+html .woocommerce-page div.product form.cart,
+html .woocommerce-page #content div.product form.cart {
+  margin: 36px 0px 30px;
+}
+
+html .woocommerce-page div.product form.cart {
+	margin-top: 0;
+}
+
+.hz-label strong {
+  font-family: "Open Sans";
+}
+
+/* Estilos para el formulario del calendario */
+
+.head-single-product .summary.entry-summary {
+  width: 100% !important;
+  margin-bottom: 4rem !important;
+  position: relative;
+}
+
+.hz-calendar-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wc-bookings-booking-form .hz-calendar {
+  border: none;
+  width: 35%;
+  padding: 1rem;
+  height: 470px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #dc1d79;
+  margin-right: 0.5rem;
+  margin-bottom: 3px;
+}
+
+.hz-form-field-calendar {
+  width: 32%;
+  margin: 0 !important;
+  border: solid 1px #ccc;
+  min-height: 470px;
+  padding: 1rem 2rem;
+}
+
+.hz-subtitle {
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.hz-subtitle-calendar {
+  background: white;
+  margin: 0;
+  padding: 1rem;
+}
+
+.hz-subtitle-before-calendar {
+  color: white;
+  padding: 1rem;
+  font-size: 23px;
+  margin: 0;
+}
+
+.hz-calendar-month .ui-datepicker-inline {
+  border: 1px solid #c7c7c7;
+  border-radius: 3px;
+  padding: 0 20px;
+  width: 23.5rem;
+}
+
+.wc-bookings-date-picker .ui-datepicker td .ui-state-default {
+  padding: 14px 0;
+}
+
+.ui-datepicker-title,
+.ui-datepicker th {
+  color: #4b4b4b;
+}
+
+html .woocommerce .ui-widget-content {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+}
+
+.gdlr-datepicker-range-wrapper *,
+.ui-datepicker * {
+  border-color: #e5e5e5;
+}
+
+.hz-alert {
+  font-family: "Open Sans";
+  padding: 0.5em;
+  box-sizing: border-box;
+  background: #c7c7c7;
+  font-size: 16px;
+  font-weight: 500;
+  color: #616161;
+  background-color: #f8e6cd;
+  max-width: 300px;
+}
+
+.wc-bookings-booking-form .block-picker {
+  display: block;
+}
+
+#wapo-total-price-table .wapo-product-price {
+  display: none;
+}
+
+#wapo-total-price-table .wapo-total-order {
+  display: none;
+}
+
+#yith-wapo-block-1 .yith-wapo-label small.option-price {
+  display: none;
+}
+
+/*ESTILO DE FUENTES PARA EL FORMULARIO*/
+
+.woocommerce
+  .checkout.woocommerce-checkout
+  #order_review
+  table
+  thead
+  tr
+  th.product-name {
+  font-family: "Fjalla One";
+}
+
+#wc-bookings-form-start-time,
+#wc-bookings-form-end-time,
+input[type="number"].hz-input,
+#wc-bookings-form-start-time > option,
+#wc-bookings-form-end-time > option {
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 16px;
+}
+
+#wc-bookings-form-start-time,
+#wc-bookings-form-end-time {
+  background-color: rgb(232, 232, 232);
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  color: #2f2f2f;
+  height: 50px;
+  cursor: pointer;
+  padding: 0 1em;
+  border-radius: 3px;
+}
+
+#wc-bookings-form-start-time > option,
+#wc-bookings-form-end-time > option {
+  max-width: 300px;
+  width: 100%;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(199, 199, 199);
+  border-image: initial;
+  border-radius: 3px;
+}
+
+#wc-bookings-booking-form {
+  border: none;
+  padding: 0 1rem;
+}
+
+.wc-bookings-booking-form .wc-bookings-booking-cost.hz-book-resume__totals {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 600;
+  border: none;
+  text-align: center;    
+  width: 530px;
+  margin: auto;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: #CCC;
+  color: black;
+}
+
+.wc-bookings-booking-form
+  .wc-bookings-booking-cost.hz-book-resume__totals
+  strong {
+  font-weight: normal;
+  font-family: "Open Sans";
+}
+
+.woocommerce div.product form.cart .button.wc-bookings-booking-form-button {
+  display: none !important;
+}
+
+.wc-bookings-booking-form label,
+.hz-label {
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.hz-radio-option {
+  font-weight: 500;
+}
+
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker-header {
+  background: none;
+  color: #1a1a1a;
+  font-family: "Fjalla One";
+  font-size: 16px;
+  text-transform: capitalize;
+  border: none;
+}
+
+#wc-bookings-booking-form .wc-bookings-date-picker .ui-datepicker th {
+  font-size: 12px;
+}
+
+#wc-bookings-booking-form
+  .wc-bookings-date-picker
+  .ui-datepicker
+  td.bookable
+  a {
+  background-color: transparent !important;
+  color: #616161 !important;
+  border-radius: 3px;
+  padding: 14px 0;
+}
+
+#wc-bookings-booking-form
+  .wc-bookings-date-picker
+  .ui-datepicker
+  td.bookable.ui-datepicker-today
+  a {
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+#wc-bookings-booking-form
+  .wc-bookings-date-picker
+  .ui-datepicker
+  td.bookable
+  a:hover {
+  background-color: #dc1d79 !important;
+  color: #ffffff !important;
+}
+
+#wc-bookings-booking-form
+  .wc-bookings-date-picker
+  .ui-datepicker
+  td.bookable-range
+  .ui-state-default {
+  background: #dc1d79 !important;
+  border-radius: 3px;
+  padding: 14px 0;
+}
+
+.woocommerce div.product form.cart table td {
+  border: none;
+}
+
+.wc-bookings-date-picker .ui-datepicker td {
+  font-size: 12px;
+}
+
+.hz-group-radio-buttons {
+  display: flex;
+}
+
+.hz-radio-option {
+  font-size: 16px;
+  border: 1px solid #c7c7c7;
+  padding: 0.5rem 1.5rem;
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hz-radio-option input {
+  visibility: hidden;
+  position: absolute;
+}
+
+.hz-radio-option:has(> .checked) {
+  border: 2px solid #dc1d79;
+  color: #fff;
+  font-weight: bold;
+  background: #dc1d79;
+}
+
+.hz-radio-option:hover:not(.hz-radio-option:has(> .checked)) {
+  border: 1px solid #dc1d79;
+  background: #dc1d79;
+  color: #fff;
+}
+
+input[type="number"].hz-input {
+  background-color: #e8e8e8;
+  padding: 1em;
+  border-radius: 3px;
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2f2f2f;
+  box-sizing: border-box;
+  border: none;
+  height: 50px;
+}
+
+#yith-wapo-addon-1 .options {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 5px !important;
+}
+
+#wapo-total-price-table {
+  width: 530px;
+  margin: auto;
+}
+
+#wapo-total-price-table table {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 1rem 2rem;
+  background-color: #CCC;
+  color: black;
+}
+
+#wapo-total-price-table .wapo-total-options th {
+  border: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  background: transparent;
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+#wapo-total-price-table .wapo-total-options td#wapo-total-options-price {
+  padding: 1rem;
+  color: black;
+  vertical-align: middle;
+}
+
+.wc_bookings_field_hour {
+  width: 100% !important;
+}
+
+#wc_bookings_field_hour::-webkit-inner-spin-button,
+#wc_bookings_field_hour::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#wc_bookings_field_persons::-webkit-inner-spin-button,
+#wc_bookings_field_persons::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hz-additional__person,
+.hz-additional__hour {
+  position: relative;
+}
+
+.hz-additional__person .up-arrow,
+.hz-additional__hour .up-arrow {
+  position: absolute;
+  top: 34px;
+  left: 274px;
+  cursor: pointer;
+}
+
+.hz-additional__person .down-arrow,
+.hz-additional__hour .down-arrow {
+  position: absolute;
+  bottom: 2px;
+  left: 274px;
+  cursor: pointer;
+}
+
+.hz-decoration img {
+  height: 141.5px;
+  width: 160px;
+  object-fit: cover;
+}
+
+.hz-decoration .options .yith-wapo-option {
+  width: calc(50% - 5px);
+}
+
+.hz-decoration .image-container {
+  order: 2;
+  text-align: center;
+}
+
+.hz-choose-options {
+  background-color: #f8e6cd;
+  min-height: 12rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.btn-woocommerce-booking {
+  text-align: center;
+}
+
+@media screen and (min-width: 1025px) {
+/*   .hz-form-field {
+    width: 59%;
+    margin-left: auto;
+  } */
+
+	#yith-wapo-container {
+		position: relative;
+		z-index: 1;
+		width: 31.5%;
+		margin-left: auto;
+		margin-top: -23.7rem;
+    border: solid 1px #CCC;
+    padding: 1rem;
+	}
+
+  .hz-number-person {
+    margin-top: -12rem;
+	  width: 61.4%;
+    margin-left: auto;
+  }
+
+  .hz-extra-hour {
+    position: absolute;
+    top: 280px;
+    right: -3px;
+    width: 61.4%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hz-calendar-form {
+    justify-content: center;
+  }
+
+  .hz-calendar {
+    width: 100%;
+  }
+
+  .hz-calendar-month {
+    height: 375px;
+  }
+
+  .hz-extra-hour {
+    position: absolute;
+    top: 800px;
+    left: 0;
+    right: 0;
+  }
+
+  .wc-bookings-booking-form .hz-calendar {
+    width: 100%;
+    max-width: 500px;
+    height: 510px;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+
+  .hz-form-field-calendar {
+    width: 100%;
+    max-width: 500px;
+    min-height: 0;
+    border: none;
+    padding: 0;
+  }
+
+  input[type="number"].hz-input {
+    max-width: 100%;
+  }
+
+  .hz-additional__person .up-arrow, 
+  .hz-additional__hour .up-arrow,
+  .hz-additional__person .down-arrow, 
+  .hz-additional__hour .down-arrow {
+    left: calc(100% - 2rem);
+  }
+
+  #wc-bookings-form-start-time, 
+  #wc-bookings-form-end-time {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hz-alert {
+    max-width: 100%;
+  }
+
+  .hz-calendar-month {
+    margin: 0;
+  }
+
+  .hz-calendar-month .ui-datepicker-inline,
+  .wc-bookings-booking-form .block-picker,
+  .hz-form-field,
+  .wc-bookings-booking-form .wc-bookings-booking-cost.hz-book-resume__totals,
+  .btn-woocommerce-booking {
+    max-width: 530px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .hz-form-field {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 1rem;
+  }
+
+  .woocommerce div.product form.cart .button.wc-bookings-booking-form-button {
+    margin: 0;
+  }
+
+  .hz-additional__person {
+    bottom: 0;
+  }
+
+  .hz-choose-options {
+    min-height: 6rem;
+  }
+
+  #wapo-total-price-table {
+    max-width: 530px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .wc-bookings-date-picker .ui-datepicker td .ui-state-default {
+    padding: 14px 0;
+  }
+	
+	.hz-decoration img {
+		width: 100%;
+		height: 200px;
+	}
+	
+	.hz-decoration .yith-wapo-option .image, .hz-decoration .yith-wapo-option .option-container {
+		width: 100%;
+	}
+
+  .hz-radio-option {
+    padding: 0.5rem 3rem;
+  }
+
+  #yith-wapo-container .yith-wapo-block {
+    margin-bottom: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .head-single-product .summary.entry-summary {
+    float: right !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wc-bookings-booking-form,
+  .wc-bookings-booking-form .container,
+  .woocommerce div.product div.summary {
+    padding: 0;
+  }
+
+  .hz-extra-hour {
+    top: 768px;
+  }
+
+  .hz-decoration .options .yith-wapo-option {
+    width: 48%;
+  }
+
+  #overlayDecoration #largeImage {
+    width: 90% !important;
+    height: 90% !important;
+  }
+
+  .hz-radio-option {
+    height: 75px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hz-book-pay {
+    max-width: calc(100% - 2rem);
+  }
+
+  .gdlr-item {
+    margin: auto;
+  }
+
+  .btn-woocommerce-booking {
+    text-align: center;
+  }
+
+  .hz-extra-hour {
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #wc-bookings-form-start-time,
+  #wc-bookings-form-end-time,
+  input[type="number"].hz-input {
+    max-width: 100%;
+  }
+
+  #yith-wapo-addon-1 .options {
+    flex-wrap: wrap;
+  }
+
+  .hz-tooltip__info {
+    left: -9rem;
+  }
+
+  .hz-additional__person .up-arrow,
+  .hz-additional__hour .up-arrow {
+    left: 92%;
+  }
+
+  .hz-additional__person .down-arrow,
+  .hz-additional__hour .down-arrow {
+    left: 92%;
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  body.single-product .container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .hz-tooltip__info {
+    left: -10rem;
+    width: 250px !important;
+  }
+}
+
+/*
+Estilos para el top banner el single product
+*/
+/* Reset some styles */
+.single-product .site-content {
+  padding-top: 0px !important;
+}
+.hz-product-banner-top .container {
+  width: 100%;
+}
+
+.single-product.woocommerce-page .gdlr-page-title-wrapper {
+  display: none;
+}
+
+/* Banner styles */
+.hz-product-banner-top {
+  position: relative;
+  overflow: hidden;
+  height: 40vh;
+  display: grid;
+  place-items: end;
+}
+
+.hz-product-banner-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
+.hz-product-banner-top__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hz-product-banner-top__content {
+  position: relative;
+  padding: 2em 0;
+  color: white;
+}
+
+.hz-product-banner-top__title {
+  color: #dc1d79;
+  margin: 0px;
+  font-size: 48px !important;
+  font-family: "Fjalla One";
+  font-weight: 600;
+}
+
+.hz-product-banner-top__subtitle {
+  font-family: "Open Sans";
+  font-size: 18px;
+}
+
+@media (max-width: 480px) {
+  .hz-product-banner-top__title {
+    line-height: 1em;
+  }
+}
+
+/* Modal window */
+.hz-modal-booking {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  padding: 2em;
+  box-sizing: border-box;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.hz-modal-booking__content {
+  background: white;
+  border-radius: 3px;
+  border: 1px solid #c7c7c7;
+  padding: 2em;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+}
+
+.hz-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hz-modal-title {
+  font-size: 40px;
+  margin: 0;
+  color: #2f2f2f;
+}
+
+.hz-modal-close {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  position: relative;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.hz-modal-close .hz-line {
+  background-color: black;
+  width: 100%;
+  display: block;
+  height: 2px;
+  position: absolute;
+}
+
+.hz-modal-close .hz-line:first-child {
+  transform: rotate(-45deg);
+}
+
+.hz-modal-close .hz-line:last-child {
+  transform: rotate(45deg);
+}
+
+.hz-modal-package {
+  font-family: "Fjalla One";
+  font-weight: 700;
+  font-size: 28px;
+  color: #dc1d79;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.hz-modal-package__price {
+  font-weight: 500;
+  color: #2f2f2f;
+}
+
+.hz-modal-details-booking {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 500;
+  color: #616161;
+  line-height: 1.5em;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+
+.hz-modal-details-booking li {
+  margin: 0;
+}
+
+.hz-modal-total {
+  font-family: "Open Sans";
+  color: #2f2f2f;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hz-text-small {
+  font-size: 12px;
+  color: #616161;
+}
+
+.hz-modal-actions {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.hz-book-cancel {
+  text-decoration: underline;
+}
+
+.hz-book-cancel:hover {
+  opacity: 0.7;
+}
+
+/*Botones*/
+.hz-button {
+  font-family: "Open Sans";
+  border: none;
+  font-size: 18px;
+  color: #2f2f2f;
+  background: white;
+  padding: 1em 2em;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.hz-book-pay {
+  background-color: #dc1d79;
+  color: white;
+  width: 530px;
+}
+
+.btn-woocommerce-booking {
+  margin: auto;
+  margin-top: -1.3rem;
+}
+
+.hz-modal-booking .hz-book-pay {
+  margin-left: 0;
+}
+
+.hz-book-pay.disabled{
+  background-color: #909090;
+  pointer-events: none;
+}
+
+.hz-book-pay i {
+  margin-left: 0.5em;
+  line-height: 5px;
+  transition: 0.5s;
+}
+
+.hz-book-pay:hover {
+  background-color: #d84e91;
+  color: white;
+}
+
+.hz-book-pay:hover i {
+  transform: translateX(5px);
+}
+
+/*Tooltip*/
+.hz-tooltip {
+  display: inline-block;
+  position: relative;
+}
+
+.hz-tooltip__info {
+  line-height: 1;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 13px;
+  border-radius: 3px;
+  background: #f8f8f8;
+  padding: 1.5em;
+  box-sizing: border-box;
+  position: absolute;
+  width: 300px;
+  bottom: 30px;
+  border: 1px solid #d9d9d9;
+  display: none;
+  z-index: 2;
+}
+
+.hz-tooltip__info p {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.hz-label .fa-solid {
+  margin-left: 5px;
+  cursor: pointer;
+  color: #a5a5a5;
+}
+
+.hz-label .fa-solid:hover {
+  color: #2f2f2f;
+}
+
+.woocommerce .checkout.woocommerce-checkout label .required {
+  /*Eliminar ateriscos para campos obligatorios*/
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .hz-book-pay {
+    margin: 0;
+  }
+}
+
+/*BOTONES WOOCOMMERCE*/
+.woocommerce .woocommerce-message a.button,
+.woocommerce .woocommerce-info a.button,
+.woocommerce .woocommerce-error a.button {
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+/*--- Estilos Finalizar Compra ---*/
+.woocommerce .checkout.woocommerce-checkout #customer_details .col-1,
+.woocommerce .checkout.woocommerce-checkout #customer_details .col-2 {
+  padding-left: 0;
+  padding-right: 0;
+  flex: 0 0 100%;
+  max-width: 100%;
+  width: auto;
+  float: none;
+}
+
+.woocommerce .checkout.woocommerce-checkout #order_review {
+  border-top: 1px solid #e7e7e7;
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.woocommerce .checkout.woocommerce-checkout #order_review table {
+  padding-right: 30px;
+  border: 0;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.woocommerce
+  .checkout.woocommerce-checkout
+  #order_review
+  > .woocommerce-checkout-payment-inner {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.woocommerce .checkout.woocommerce-checkout #order_review #payment {
+  background: none;
+}
+
+.woocommerce .checkout.woocommerce-checkout #customer_details .form-row input {
+  border: none;
+}
+
+.woocommerce .checkout.woocommerce-checkout .select2-selection {
+  height: 50px;
+  border: none;
+  background: #f3f3f3;
+}
+
+.woocommerce .checkout.woocommerce-checkout .select2-selection span {
+  height: 50px;
+  line-height: 50px;
+  padding-left: 20px;
+}
+
+.woocommerce td.product-name dl.variation dt {
+  width: 100%;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #797979;
+}
+
+.woocommerce td.product-name dl.variation dd {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.woocommerce
+  .checkout.woocommerce-checkout
+  #order_review
+  #payment
+  .place-order
+  .button {
+  width: 100%;
+  background: #dc1d79;
+  border: none;
+}
+
+.woocommerce
+  .checkout.woocommerce-checkout
+  #order_review
+  #payment
+  .place-order
+  .button:hover {
+  background: #d84e91;
+}
+
+.woocommerce-checkout
+  .main-content-container.container.gdlr-item-start-content {
+  max-width: 770px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.woocommerce
+  .checkout.woocommerce-checkout
+  #order_review
+  #payment
+  ul.payment_methods
+  li.wc_payment_method {
+  width: 100%;
+  border: 1px solid #ccc;
+  position: relative;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  line-height: 28px;
+}
+
+html .woocommerce #payment ul.payment_methods,
+html .woocommerce-page #payment ul.payment_methods {
+  padding: 0;
+}
