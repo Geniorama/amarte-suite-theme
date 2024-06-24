@@ -75,6 +75,13 @@ acf_add_local_field_group(array(
         'value' => 'product',
       ),
     ),
+    array(
+      array(
+        'param' => 'post_type',
+        'operator' => '==',
+        'value' => 'planes',
+      ),
+    ),
   ),
   'menu_order' => 0,
   'position' => 'normal',
