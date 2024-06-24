@@ -92,6 +92,7 @@ add_action('wp_enqueue_scripts', 'hz_enqueue_styles');
 require get_stylesheet_directory() . '/shortcodes/carousel/hz-carousel-features.php'; //shortcode para el carousel
 require get_stylesheet_directory() . '/shortcodes/banner360/banner-360.php'; //shortcode para la vista 360
 require get_stylesheet_directory() . '/shortcodes/grid/grid-features.php'; //shortcode para el grid
+require get_stylesheet_directory() . '/cpt/ha__planes_paquetes.php'; //Custom Post Type para agregar los paquetes y planes
 
 
 /**
@@ -1424,8 +1425,8 @@ function hz_aplicar_descuento_en_rango_fecha($fecha_inicio_descuento, $fecha_fin
     $fin_descuento = DateTime::createFromFormat('d-m-Y', $fecha_fin_descuento);
     $fecha_de_reserva = DateTime::createFromFormat('d-m-Y', $fecha_de_reserva);
     $fecha_de_reserva->setTime(0, 0, 0);
-	$inicio_descuento->setTime(0, 0, 0);
-	$fin_descuento->setTime(0, 0, 0);
+    $inicio_descuento->setTime(0, 0, 0);
+    $fin_descuento->setTime(0, 0, 0);
 
     // Verificar si se crearon correctamente los objetos DateTime
     if ($inicio_descuento && $fin_descuento && $fecha_de_reserva) {
