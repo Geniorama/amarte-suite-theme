@@ -99,6 +99,7 @@ require get_stylesheet_directory() . '/shortcodes/grid/grid-features.php'; //sho
 //////////// Custom Posts Type
 ////////////////////////////////////////////////////////////////////////////
 require get_stylesheet_directory() . '/cpt/ha__planes_paquetes.php'; //Custom Post Type para agregar los paquetes y planes
+require get_stylesheet_directory() . '/cpt/hs__hotel_settings.php'; //Custom Post Type para agregar configuraciones generales
 
 ////////////////////////////////////////////////////////////////////////////
 //////////// Custom Fields
