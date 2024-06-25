@@ -95,6 +95,7 @@ add_action('wp_enqueue_scripts', 'hz_enqueue_styles');
 require get_stylesheet_directory() . '/shortcodes/carousel/hz-carousel-features.php'; //shortcode para el carousel
 require get_stylesheet_directory() . '/shortcodes/banner360/banner-360.php'; //shortcode para la vista 360
 require get_stylesheet_directory() . '/shortcodes/grid/grid-features.php'; //shortcode para el grid
+require get_stylesheet_directory() . '/shortcodes/price/ha__price.php'; //Imprime el precio de habitaciones según bloque de horas
 
 ////////////////////////////////////////////////////////////////////////////
 //////////// Custom Posts Type
