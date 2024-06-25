@@ -35,7 +35,7 @@ function cptui_register_my_cpts_planes()
     "query_var" => true,
     "menu_position" => 7,
     "menu_icon" => "dashicons-tickets-alt",
-    "supports" => ["title", "editor", "thumbnail"],
+    "supports" => ["title", "editor"],
     "show_in_graphql" => false,
   ];
 
