@@ -77,7 +77,8 @@ function hz_enqueue_styles()
             array(),
             wp_get_theme()->get('1.0')
         );
-
+    }
+    if (is_single() || is_product()) {
         // Estilos para el grid del single product
         wp_enqueue_style(
             'hz_grid_style',

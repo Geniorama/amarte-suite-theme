@@ -4,7 +4,7 @@ if (!function_exists('hz_grid_features_func')) {
     add_shortcode('hz_grid_features', 'hz_grid_features_func');
     function hz_grid_features_func()
     {
-        if (is_product()) {
+        if (is_product() || is_single()) {
             $features = get_field('caracteristicas');
             ob_start();
             if ($features) :
