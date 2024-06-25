@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Shortcode para mostrar el precio del plan en función del tipo de plan y del atributo que corresponde al bloque de hora
+ * shortcode de referencia [ha_price_plan bloque_horas='costo_4horas']
+ */
 if (!function_exists('ha_price_plan_func')) {
   add_shortcode('ha_price_plan', 'ha_price_plan_func');
 
