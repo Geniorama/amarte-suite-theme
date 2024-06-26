@@ -17,7 +17,7 @@ if (!function_exists('ha_price_plan_func')) {
       ),
       $atts
     );
-    $planType = get_field('tipo_de_plan');
+    $planType = get_field('tipo_de_plan')['label'];
     $planes = get_field('configuraciones_planes', $attributes['settings'])['planes'];
     foreach ($planes as $plan) {
       if ($plan['tipo_de_plan'] === $planType) {
