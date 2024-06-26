@@ -9,8 +9,6 @@ if (!function_exists('ha_price_plan_func')) {
 
   function ha_price_plan_func($atts)
   {
-    ob_start();
-
     // Definir los atributos aceptados y sus valores predeterminados
     $attributes = shortcode_atts(
       array(
