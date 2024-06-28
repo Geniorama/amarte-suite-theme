@@ -117,8 +117,8 @@ if (function_exists('acf_add_local_field_group')) :
               ),
               array(
                 'key' => 'field_667a022783827',
-                'label' => 'Costo 12 horas fsd',
-                'name' => 'costo_12horas_fsd',
+                'label' => 'Costo 12 horas fds',
+                'name' => 'costo_12horas_fds',
                 'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
