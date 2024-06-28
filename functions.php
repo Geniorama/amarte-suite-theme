@@ -90,7 +90,6 @@ function hz_enqueue_styles()
 }
 add_action('wp_enqueue_scripts', 'hz_enqueue_styles');
 
-
 // Desencolar el script del plugin WooCommerce Bookings
 function ha_dequeue_wc_bookings_script()
 {
@@ -99,6 +98,7 @@ function ha_dequeue_wc_bookings_script()
     wp_enqueue_script('wc-bookings-booking-form', get_stylesheet_directory_uri() . '/woocommerce-bookings/dist/frontend.js', array('jquery', 'jquery-blockui', 'jquery-ui-datepicker', 'underscore'), WC_BOOKINGS_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'ha_dequeue_wc_bookings_script', 100);
+
 ////////////////////////////////////////////////////////////////////////////
 //////////// Short Codes
 ////////////////////////////////////////////////////////////////////////////

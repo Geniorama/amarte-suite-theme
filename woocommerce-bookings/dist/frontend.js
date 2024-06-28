@@ -2705,6 +2705,7 @@
                               data: {
                                 action: "wc_bookings_calculate_costs",
                                 form: i.serialize(),
+                                ha_type_plan_field: i.find("#ha_type_plan_field").val()
                               },
                               success: function (e) {
                                 "{" !== e.charAt(0) &&
@@ -2837,6 +2838,7 @@
               .prop("disabled", !1);
         });
     },
+    
     function (t, e, n) {
       var r = n(114),
         o = n(115),
