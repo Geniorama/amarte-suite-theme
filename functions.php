@@ -89,6 +89,16 @@ function hz_enqueue_styles()
     }
 }
 add_action('wp_enqueue_scripts', 'hz_enqueue_styles');
+
+
+// Desencolar el script del plugin WooCommerce Bookings
+function ha_dequeue_wc_bookings_script()
+{
+    wp_dequeue_script('wc-bookings-booking-form');
+
+    wp_enqueue_script('wc-bookings-booking-form', get_stylesheet_directory_uri() . '/woocommerce-bookings/dist/frontend.js', array('jquery', 'jquery-blockui', 'jquery-ui-datepicker', 'underscore'), WC_BOOKINGS_VERSION, true);
+}
+add_action('wp_enqueue_scripts', 'ha_dequeue_wc_bookings_script', 100);
 ////////////////////////////////////////////////////////////////////////////
 //////////// Short Codes
 ////////////////////////////////////////////////////////////////////////////
@@ -343,6 +353,16 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
     }
 
     $total_booking_cost = $cost_by_duration + $cost_total_aditional_person + $cost_decoration;
+
+    if (isset($_POST['ha_type_plan_field'])) {
+        $custom_plan = sanitize_text_field($_POST['ha_type_plan_field']);
+
+        // Verificar el valor y ajustar el costo
+        if ($custom_plan === 'plan1') {
+            $total_booking_cost = 98765;
+        }
+    }
+
     return $total_booking_cost;
 }
 
@@ -936,4 +956,13 @@ function obtener_parametro_url($parametro)
         return sanitize_text_field($_GET[$parametro]);
     }
     return null;
+}
+
+
+
+add_action('woocommerce_before_booking_form', 'ha_add_booking_form_type_plan_field');
+function ha_add_booking_form_type_plan_field()
+{
+    $typePlan = obtener_parametro_url('type');
+    echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
 }
