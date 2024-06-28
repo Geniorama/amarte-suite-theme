@@ -969,5 +969,6 @@ add_action('woocommerce_before_booking_form', 'ha_add_booking_form_type_plan_fie
 function ha_add_booking_form_type_plan_field()
 {
     $typePlan = obtener_parametro_url('type');
-    echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
+    if ($typePlan) echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
+    return;
 }
