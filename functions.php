@@ -927,3 +927,13 @@ function hz_tipo_habitación($product_categories)
     }
     return false;
 }
+
+// obtiene parámetro desde la url
+function obtener_parametro_url($parametro)
+{
+    // Verificar si el parámetro está presente en la URL actual
+    if (isset($_GET[$parametro])) {
+        return sanitize_text_field($_GET[$parametro]);
+    }
+    return null;
+}
