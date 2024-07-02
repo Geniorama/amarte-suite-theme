@@ -16,15 +16,22 @@ jQuery(document).ready(function($) {
   plan && decorationOptions.remove();
   !plan && planOptions.remove();
 
-
-  var labelsArray = [];
-
-  $('.yith-wapo-label').each(function() {
-    var labelText = $(this).text().trim();
-    var normalizedText = normalizeText(labelText);
-    var labelFor = $(this).attr('for');
-    labelsArray.push({ text: normalizedText, for: labelFor });
-  });
+  if(plan) {
+    // Eliminar el atributo 'checked' de todos los inputs tipo radio con clase 'yith-wapo-option-value'
+    $('.yith-wapo-option-value').prop('checked', false);
+  
+    var labelsArray = [];
+    $('.yith-wapo-label').each(function() {
+      var labelText = $(this).text().trim();
+      var normalizedText = normalizeText(labelText);
+      var labelFor = $(this).attr('for');
+      labelsArray.push({ text: normalizedText, for: labelFor });
+      // Comparar el valor del parámetro 'plan' con el 'normalizedText'
+      if (plan === normalizedText) {
+        $('#' + labelFor).prop('checked', true);
+      }
+    });
+  }
 
   console.log(labelsArray);
 
