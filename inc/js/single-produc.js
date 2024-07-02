@@ -26,10 +26,17 @@ jQuery(document).ready(function($) {
       var normalizedText = normalizeText(labelText);
       var labelFor = $(this).attr('for');
       labelsArray.push({ text: normalizedText, for: labelFor });
+
       // Comparar el valor del parámetro 'plan' con el 'normalizedText'
       if (plan === normalizedText) {
         $('#' + labelFor).prop('checked', true);
-      }
+        found = true;
+        // Mostrar la card correspondiente
+        $('#' + labelFor).closest('.yith-wapo-option').show();
+    } else {
+        // Ocultar todas las cards
+        $('#' + labelFor).closest('.yith-wapo-option').hide();
+    }
     });
   }
 

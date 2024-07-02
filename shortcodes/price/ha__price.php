@@ -24,6 +24,6 @@ if (!function_exists('ha_price_plan_func')) {
         return $plan[$attributes['bloque_horas']];
       }
     }
-    return '';
+    return;
   }
 }

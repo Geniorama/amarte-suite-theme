@@ -499,6 +499,7 @@ input[type="number"].hz-input {
 		margin-top: -23.7rem;
     border: solid 1px #CCC;
     padding: 1rem;
+    min-height: 473px;
 	}
 
   .hz-number-person {
