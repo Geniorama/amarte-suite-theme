@@ -11,6 +11,11 @@ jQuery(document).ready(function($) {
   var plan = getUrlParameter('plan');
   var type = getUrlParameter('type');
 
+  var decorationOptions = $('#yith-wapo-block-1');
+  var planOptions = $('#yith-wapo-block-2');
+  plan && decorationOptions.remove();
+  !plan && planOptions.remove();
+
   // Print the parameters to console
   console.log('Plan:', plan);
   console.log('Type:', type);
