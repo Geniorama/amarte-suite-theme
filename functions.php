@@ -51,6 +51,9 @@ function hz_custom_scripts()
 
         // JavaScript para banner 360
         wp_enqueue_script('hz_banner_360_script', get_stylesheet_directory_uri() . '/shortcodes/banner360/banner-360.js', array('jquery'), '1.0', true);
+
+        // JavaScript para manipular el DOM del single product para cuando se trata de un Plan
+        wp_enqueue_script('ha__single_product', get_stylesheet_directory_uri() . '/inc/js/single-produc.js', array('jquery'), '1.0', true);
     }
 }
 add_action('wp_enqueue_scripts', 'hz_custom_scripts');
@@ -289,6 +292,10 @@ add_action('woocommerce_single_product_summary', 'hz_modal_popup_confirmar_reser
 add_filter('woocommerce_bookings_calculated_booking_cost', 'hz_custom_booking_cost', 10, 3);
 function hz_custom_booking_cost($booking_cost, $product, $data)
 {
+    // A cada bloque se le agrega 1hora más para considerar el tiempo necesario para limpieza
+    $bloque_4hs = 5;
+    $bloque_8hs = 9;
+    $bloque_12hs = 13;
     // Obtener costo por la decoración adicional de la habitación
     $resource_base_costs = $product->get_resource_base_costs();
     if (isset($data['_resource_id'])) $cost_decoration = isset($resource_base_costs[$data['_resource_id']]) && $resource_base_costs[$data['_resource_id']] > 0 ? $resource_base_costs[$data['_resource_id']] : 0;
@@ -318,7 +325,7 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
 
     // Retornar un precio diferente en función de la cantidad de horas seleccionadas por el usuario
     // El costo es agregado en un custom field dentro de la habitación desde el admin
-    if ($booking_day_of_week === 'Saturday' || $booking_day_of_week === 'Friday') {
+    if (is_weekend($booking_day_of_week)) {
         $cost_by_aditional_person = get_field('costo_por_persona_adicional_fs', $product->id);
         if ($booking_duration >= 5 && $booking_duration < 9) {
             $horas_extras = $booking_duration - 5;
@@ -354,16 +361,30 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
         $cost_total_aditional_person = $data['_persons'][0] * $cost_by_aditional_person;
     }
 
-    $total_booking_cost = $cost_by_duration + $cost_total_aditional_person + $cost_decoration;
-
+    /**
+     * Calcula el costo de la reserva cuando se está reservando un paquete / plan
+     */
     if (isset($_POST['ha_type_plan_field'])) {
-        $custom_plan = sanitize_text_field($_POST['ha_type_plan_field']);
-
-        // Verificar el valor y ajustar el costo
-        if ($custom_plan === 'plan1') {
-            $total_booking_cost = 98765;
+        $roomTypePlan = sanitize_text_field($_POST['ha_type_plan_field']);
+        $allPlans = get_field('configuraciones_planes', 7766)['planes'];
+        foreach ($allPlans as $plan) {
+            if ($plan['tipo_de_plan'] === $roomTypePlan) {
+                if ($booking_duration >= $bloque_4hs && $booking_duration < $bloque_8hs) {
+                    $horas_extras = $booking_duration - $bloque_4hs;
+                    $cost_by_duration = is_weekend($booking_day_of_week) ?
+                        $plan['costo_4horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                        $plan['costo_4horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                } elseif ($booking_duration >= $bloque_12hs && $booking_duration < 25 && $departure_time !== '13:00:00') {
+                    $horas_extras = $booking_duration - $bloque_12hs;
+                    $cost_by_duration = is_weekend($booking_day_of_week) ?
+                        $plan['costo_12horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                        $plan['costo_12horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                }
+            }
         }
     }
+
+    $total_booking_cost = $cost_by_duration + $cost_total_aditional_person + $cost_decoration;
 
     return $total_booking_cost;
 }
@@ -739,6 +760,8 @@ function hz_checkbox_decoration()
 
             var customTooltipText = <?php echo json_encode($customTooltipText); ?>;
             var activarTooltip = <?php echo $activarTooltip; ?>;
+            console.log('customTooltipText-->', customTooltipText);
+            console.log('activarTooltip-->', activarTooltip);
 
             //Cambiar el texto del total de decoración
             $("#wapo-total-price-table .wapo-total-options th").html("+ Decoración:");
@@ -971,4 +994,9 @@ function ha_add_booking_form_type_plan_field()
     $typePlan = obtener_parametro_url('type');
     if ($typePlan) echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
     return;
+}
+
+function is_weekend($booking_day_of_week)
+{
+    return $booking_day_of_week === 'Saturday' || $booking_day_of_week === 'Friday';
 }
