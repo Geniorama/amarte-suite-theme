@@ -16,7 +16,30 @@ jQuery(document).ready(function($) {
   plan && decorationOptions.remove();
   !plan && planOptions.remove();
 
+
+  var labelsArray = [];
+
+  $('.yith-wapo-label').each(function() {
+    var labelText = $(this).text().trim();
+    var normalizedText = normalizeText(labelText);
+    var labelFor = $(this).attr('for');
+    labelsArray.push({ text: normalizedText, for: labelFor });
+  });
+
+  console.log(labelsArray);
+
   // Print the parameters to console
   console.log('Plan:', plan);
   console.log('Type:', type);
 });
+
+
+function normalizeText(text) {
+  // Convertir a minúsculas
+  text = text.toLowerCase();
+  // Reemplazar espacios por guiones
+  text = text.replace(/\s+/g, '-');
+  // Eliminar acentos
+  text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return text;
+}
