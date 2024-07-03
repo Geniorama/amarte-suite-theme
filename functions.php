@@ -760,8 +760,6 @@ function hz_checkbox_decoration()
 
             var customTooltipText = <?php echo json_encode($customTooltipText); ?>;
             var activarTooltip = <?php echo $activarTooltip; ?>;
-            console.log('customTooltipText-->', customTooltipText);
-            console.log('activarTooltip-->', activarTooltip);
 
             //Cambiar el texto del total de decoración
             $("#wapo-total-price-table .wapo-total-options th").html("+ Decoración:");

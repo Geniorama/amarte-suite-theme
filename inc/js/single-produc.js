@@ -12,8 +12,10 @@ jQuery(document).ready(function($) {
   var type = getUrlParameter('type');
 
   var decorationOptions = $('#yith-wapo-block-1');
+  var onlySingleRoom = $('.ha-single-room');
   var planOptions = $('#yith-wapo-block-2');
   plan && decorationOptions.remove();
+  plan && onlySingleRoom.remove();
   !plan && planOptions.remove();
 
   if(plan) {
