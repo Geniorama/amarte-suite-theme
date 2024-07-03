@@ -41,12 +41,6 @@ jQuery(document).ready(function($) {
     }
     });
   }
-
-  console.log(labelsArray);
-
-  // Print the parameters to console
-  console.log('Plan:', plan);
-  console.log('Type:', type);
 });
 
 
