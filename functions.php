@@ -443,12 +443,13 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
     } else {
         $block_html .= '<select id="wc-bookings-form-end-time" name="end_time">';
         $block_html .= '<option value="0" disabled selected>' . esc_html__('Selecciona un paquete', 'woocommerce-bookings') . '</option>';
+        $hasPlan = isset($_POST['typePlanField']);
         foreach ($data as $booking_data) {
             $display  = $booking_data['display'];
             $end_time = $booking_data['end_time'];
             $duration = $booking_data['duration'];
 
-            if ($duration === 5 || $duration === 9 || $duration === 13 ||  (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14)) {
+            if (validarBloqueHora($duration, $hasPlan, $end_time)) {
                 $package_name = '';
                 $package_price = '';
 
@@ -463,7 +464,7 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
                     $package_name = 'Día hotelero';
                 }
 
-                if (validarBloquePrecio($duration,  $product->id) || $duration === 9 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14)) {
+                if (validarBloquePrecio($duration,  $product->id) || validarBloqueHora($duration, $hasPlan, $end_time)) {
                     $block_html .= '<option data-duration-display="' . esc_attr($display) . '" data-value="' . get_time_as_iso8601($end_time) . '" value="' . esc_attr($duration) . '">' . $package_name . '</option>';
                 }
             }
@@ -474,6 +475,12 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
     $block_html .= '</div>';
 
     return $block_html;
+}
+
+function validarBloqueHora($duration, $hasPlan, $end_time)
+{
+    if ($hasPlan) return ($duration === 5 || $duration === 13);
+    else return ($duration === 5 || $duration === 9 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
 }
 
 function validarBloquePrecio($duration, $productID)

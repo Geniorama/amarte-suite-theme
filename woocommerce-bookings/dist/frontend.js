@@ -2463,6 +2463,7 @@
                   .parents(".wc-bookings-start-time-container")
                   .data("blocks"),
                 u = t(this).parents(".form-field").eq(0);
+                var typePlanField = t("#ha_type_plan_field").val();
               if (
                 (t("#wc-bookings-form-end-time").attr("disabled", "disabled"),
                 t("#wc-bookings-form-end-time").css("opacity", "0.5"),
@@ -2503,6 +2504,7 @@
                       start_date_time: i,
                       product_id: a,
                       blocks: s,
+                      typePlanField,
                       resource_id: l,
                     },
                     success: function (e) {
