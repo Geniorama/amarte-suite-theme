@@ -1135,3 +1135,139 @@ html .woocommerce-page #payment ul.payment_methods {
 #yith-wapo-block-2 .yith-wapo-addon:not(.yith-wapo-addon-type-label) .yith-wapo-option .image img {
   max-height: max-content;
 }
+
+
+
+.wp-video{
+	width: 100% !important;
+}
+
+.wp-video-shortcode{
+	width: 100% !important;
+}
+
+.up-sells h2{
+	display: none;
+}
+
+.up-sells .products{
+	display: none;
+}
+
+.menu-item{
+  position: relative;
+}
+
+.hz-list-packages{
+	width: 100%;
+	display: flex;
+  align-items: center;
+	justify-content: center;
+}
+
+.menu-item::before{
+  position: absolute;
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: #DB1272;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9;
+  transition: .4s;
+}
+
+.menu-item:hover::before{
+  width: 80%;
+}
+
+.current_page_item{
+  position: relative;
+}
+
+.current_page_item::before{
+  position: absolute;
+  content: '';
+  width: 80%;
+  height: 2px;
+  background-color: #DB1272;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9;
+  transition: .4s;
+}
+
+.footer-width-fixer .menu-item::before{
+  position: absolute;
+  content: '';
+  width: 0% !important;
+  height: 2px;
+  background-color: #DB1272;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9;
+  transition: .4s;
+}
+
+.elementor-element-75b4b5f .menu-item::before{
+  position: absolute;
+  content: '';
+  width: 1px !important;
+  height: 20px;
+  background-color: #A3A3A3;
+  top: calc(50% - 10px);
+  right: -100%;
+  z-index: 9;
+  transition: .4s;
+}
+
+.elementor-element-75b4b5f .menu-item:nth-last-child(1)::before{
+  display: none;
+}
+
+.ue-icon{
+  margin-top: -170px !important;
+}
+
+input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=url], select, textarea{
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 0px;
+  padding: 15px;
+  outline: none;
+}
+
+input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=url], select, textarea::placeholder{
+  font-size: 13px;
+  color: #828282;
+  font-family: "Open sans", sans-serif;
+}
+
+.wpcf7-acceptance .wpcf7-list-item-label{
+  color: #909090;
+  font-family: "Open sans", sans-serif;
+  font-size: 16px;
+}
+
+.wpcf7-submit{
+  background-color: #DA1273;
+  color: white;
+  border: 2px solid #DA1273;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 0px;
+  margin-top: 10px;
+  transition: .4s;
+}
+
+.wpcf7-submit:hover{
+  color: #DA1273;
+  background-color: white;
+}
