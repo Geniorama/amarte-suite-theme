@@ -126,7 +126,7 @@ require get_stylesheet_directory() . '/custom-fields/ha__caracteristicas_habitac
 require get_stylesheet_directory() . '/custom-fields/ha__costo_bloque_horas.php'; //Agrega los bloques de horas para anotar su precio
 require get_stylesheet_directory() . '/custom-fields/ha__tooltip_decoracion.php'; //Agrega campo para dejar la descripción tooltip para la decoración
 require get_stylesheet_directory() . '/custom-fields/ha__vista_360.php'; //Agrega campo para insertar el shortcode de la vista 360°
-require get_stylesheet_directory() . '/custom-fields/hs__fields_planes.php'; //Agrega campos personalizados al post type de planes
+// require get_stylesheet_directory() . '/custom-fields/hs__fields_planes.php'; //Agrega campos personalizados al post type de planes
 require get_stylesheet_directory() . '/custom-fields/hs__configuraciones_generales.php'; //Agrega campos personalizados para las configuraciones del hotel
 
 
