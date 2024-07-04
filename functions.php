@@ -513,7 +513,7 @@ function hz_custom_script()
                 }
             });
 
-            var htmlhorasExtras = '<div class="hz-form-field hz-extra-hour" style="display: none;" id="extra_hours_field"><p class="hz-additional__hour"><label class="hz-label" for="wc_bookings_field_hour"><strong>Hora(s) adicinal(es) </strong><i style="font-weight: 500;">(opcional)</i>:</label><input type="number" class="hz-input wc_bookings_field_hour" value="0" step="1" min="0" max="8" name="wc_bookings_field_hour" id="wc_bookings_field_hour"></p></div>';
+            var htmlhorasExtras = '<div class="hz-form-field hz-extra-hour" style="display: none;" id="extra_hours_field"><p class="hz-additional__hour"><label class="hz-label" for="wc_bookings_field_hour"><strong>Hora(s) adicional(es) </strong><i style="font-weight: 500;">(opcional)</i>:</label><input type="number" class="hz-input wc_bookings_field_hour" value="0" step="1" min="0" max="8" name="wc_bookings_field_hour" id="wc_bookings_field_hour"></p></div>';
             $('.woocommerce-content form.cart').append(htmlhorasExtras);
 
             $(document).on('change', '#wc-bookings-form-end-time', function() {
