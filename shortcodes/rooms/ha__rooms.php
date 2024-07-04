@@ -8,20 +8,20 @@ if (!function_exists('ha_rooms_func')) {
     $planType = get_field('tipo_de_plan')['value'];
     $slug = get_post_field('post_name');
     $html = "";
+    $html .= "<div class=ha__rooms>";
     foreach ($rooms as $room) {
       $roomID = $room->ID;
       $title = $room->post_title;
       $img = get_the_post_thumbnail($roomID, 'medium', array('class' => 'ha__room-image'));
       $url = get_the_permalink($roomID);
       $html .= "
-        <div class=ha__rooms>
-          <div class=ha__room>
-            $img
-            <div class=ha__room-title><a class='ha__room-link' href='$url?plan=$slug&type=$planType'>$title</div>
-          </div>
+        <div class=ha__room>
+          $img
+          <div class=ha__room-title><a class='ha__room-link' href='$url?plan=$slug&type=$planType'>$title</a></div>
         </div>
       ";
     }
+    $html .= "</div>";
     return $html;
   }
 }
