@@ -4,6 +4,8 @@ if (!function_exists('ha_rooms_func')) {
 
   function ha_rooms_func()
   {
+    wp_enqueue_style('ha-rooms-shortcode', get_stylesheet_directory_uri() . '/shortcodes/rooms/ha_rooms.css', array(), '1.0');
+
     $rooms = get_field('habitaciones');
     $planType = get_field('tipo_de_plan')['value'];
     $slug = get_post_field('post_name');
@@ -12,7 +14,7 @@ if (!function_exists('ha_rooms_func')) {
     foreach ($rooms as $room) {
       $roomID = $room->ID;
       $title = $room->post_title;
-      $img = get_the_post_thumbnail($roomID, 'medium', array('class' => 'ha__room-image'));
+      $img = get_the_post_thumbnail($roomID, 'large', array('class' => 'ha__room-image'));
       $url = get_the_permalink($roomID);
       $html .= "
         <div class=ha__room>
