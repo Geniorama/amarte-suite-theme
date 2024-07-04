@@ -39,3 +39,9 @@ span.ha-tail {
   color: #c650cc;
 
 }
+
+@media screen and (max-width: 1024px) {
+  .ha-room-info {
+    flex-wrap: wrap;
+  }
+}
