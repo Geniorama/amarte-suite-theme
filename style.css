@@ -1130,3 +1130,8 @@ html .woocommerce #payment ul.payment_methods,
 html .woocommerce-page #payment ul.payment_methods {
   padding: 0;
 }
+
+/*Estilos a la sección de planes del single product*/
+#yith-wapo-block-2 .yith-wapo-addon:not(.yith-wapo-addon-type-label) .yith-wapo-option .image img {
+  max-height: max-content;
+}
