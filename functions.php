@@ -366,7 +366,9 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
      */
     if (isset($_POST['ha_type_plan_field'])) {
         $roomTypePlan = sanitize_text_field($_POST['ha_type_plan_field']);
-        $allPlans = get_field('configuraciones_planes', 7766)['planes'];
+        $hotelSettings = get_page_by_path('configuraciones-generales', OBJECT, 'hotel_settings');
+        $hotelSettingsID = $hotelSettings->ID;
+        $allPlans = get_field('configuraciones_planes', $hotelSettingsID)['planes'];
         foreach ($allPlans as $plan) {
             if ($plan['tipo_de_plan'] === $roomTypePlan) {
                 if ($booking_duration >= $bloque_4hs && $booking_duration < $bloque_8hs) {
