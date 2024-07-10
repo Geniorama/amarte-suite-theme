@@ -18,7 +18,9 @@ if (!function_exists('ha_rooms_func')) {
       $url = get_the_permalink($roomID);
       $html .= "
         <div class=ha__room>
-          $img
+          <a class='ha__room-imaage-link' href='$url?plan=$slug&type=$planType'>
+            $img
+          </a>
           <div class=ha__room-title><a class='ha__room-link' href='$url?plan=$slug&type=$planType'>$title</a></div>
         </div>
       ";
