@@ -9,8 +9,9 @@
   font-family: "Open Sans";
   font-size: 16px;
   font-weight: bold;
-  color: #909090;
-  border: 1px solid #c7c7c7;
+  color: #fff;
+  border: 2px solid #dc1d79;
+  background-color: #dc1d79;
   padding: 0.5rem 1.5rem;
   box-sizing: border-box;
   display: inline-block;
@@ -21,9 +22,9 @@
   transition: all .3s ease-in;
 }
 
-.ha__room .ha__room-link:hover {
-  background: #dc1d79;
-  color: #fff;
+.ha__room:hover .ha__room-link {
+  background-color: transparent;
+  color: #dc1d79;
 }
 
 @media screen and (max-width: 860px) {
