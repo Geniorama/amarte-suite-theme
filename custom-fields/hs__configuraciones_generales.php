@@ -1,12 +1,12 @@
 <?php
-if (function_exists('acf_add_local_field_group')) :
+if (function_exists('acf_add_local_field_group')):
 
   acf_add_local_field_group(array(
     'key' => 'group_667a00819f9e1',
     'title' => 'Hotel Settings',
     'fields' => array(
       array(
-        'key' => 'field_667a00bc83821',
+        'key' => 'field_667b314f53227',
         'label' => 'Configuraciones de Planes',
         'name' => 'configuraciones_planes',
         'type' => 'group',
@@ -21,7 +21,7 @@ if (function_exists('acf_add_local_field_group')) :
         'layout' => 'block',
         'sub_fields' => array(
           array(
-            'key' => 'field_667a00d883822',
+            'key' => 'field_667a00bc83821',
             'label' => 'Planes',
             'name' => 'planes',
             'type' => 'repeater',
@@ -48,7 +48,26 @@ if (function_exists('acf_add_local_field_group')) :
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                  'width' => '40',
+                  'width' => '25',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+              ),
+              array(
+                'key' => 'field_66bcfc5d8759d',
+                'label' => 'Descripción',
+                'name' => 'descripcion_plan',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '35',
                   'class' => '',
                   'id' => '',
                 ),
@@ -67,7 +86,7 @@ if (function_exists('acf_add_local_field_group')) :
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                  'width' => '13',
+                  'width' => '10',
                   'class' => '',
                   'id' => '',
                 ),
@@ -86,7 +105,7 @@ if (function_exists('acf_add_local_field_group')) :
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                  'width' => '14',
+                  'width' => '10',
                   'class' => '',
                   'id' => '',
                 ),
@@ -105,7 +124,7 @@ if (function_exists('acf_add_local_field_group')) :
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                  'width' => '15',
+                  'width' => '10',
                   'class' => '',
                   'id' => '',
                 ),
@@ -124,7 +143,7 @@ if (function_exists('acf_add_local_field_group')) :
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                  'width' => '15',
+                  'width' => '10',
                   'class' => '',
                   'id' => '',
                 ),
