@@ -882,20 +882,6 @@ function hz_decoration_tooltips()
 }
 add_action('woocommerce_single_product_summary', 'hz_decoration_tooltips', 50);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * Aplica un porcentaje de descuento en el carrito y en el check out
  */
