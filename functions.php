@@ -899,6 +899,7 @@ function hz_aplicar_descuento_total($cart)
     $fecha_fin_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['fecha_fin_descuento'];
     $porcentaje_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['porcentaje_descuento'];
     $nombre_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['nombre_descuento'];
+    $habitaciones_que_aplica = get_field('configuraciones_descuentos', $hotelSettingsID)['habitaciones_que_aplica'];
 
     // Suponiendo que $cart es el objeto WC_Cart que proporcionaste
 
@@ -918,7 +919,8 @@ function hz_aplicar_descuento_total($cart)
     // Verificar si la habitación es tipo Deluxe
     $product_categories = wp_get_post_terms($product_id, 'product_cat');
 
-    if (hz_tipo_habitación($product_categories)) $valorPorcentajeDescuento = hz_aplicar_descuento_en_rango_fecha($fecha_inicio_descuento, $fecha_fin_descuento, $fecha_de_reserva, $porcentaje_descuento);
+    if (mdw_habitacion_tiene_descuento($habitaciones_que_aplica, $product_id)) $valorPorcentajeDescuento = hz_aplicar_descuento_en_rango_fecha($fecha_inicio_descuento, $fecha_fin_descuento, $fecha_de_reserva, $porcentaje_descuento);
+    // if (hz_tipo_habitación($product_categories)) $valorPorcentajeDescuento = hz_aplicar_descuento_en_rango_fecha($fecha_inicio_descuento, $fecha_fin_descuento, $fecha_de_reserva, $porcentaje_descuento);
     else $valorPorcentajeDescuento = 0;
 
     //Se valida que si exista un porcentaje de descuento para poder aplicarlo, sino lo hay, no se ejecuta nada
@@ -968,6 +970,17 @@ function hz_tipo_habitación($product_categories)
     foreach ($product_categories as $category) {
         $category_slug = $category->slug;
         if ($category_slug === 'deluxe') return true;
+    }
+    return false;
+}
+
+/**
+ * Valida si la habitación aplica porcentaje de descuento
+ */
+function mdw_habitacion_tiene_descuento($habitaciones_que_aplica, $product_id)
+{
+    foreach ($habitaciones_que_aplica as $room_id) {
+        if ($room_id == $product_id) return true;
     }
     return false;
 }
