@@ -889,10 +889,16 @@ function hz_aplicar_descuento_total($cart)
 {
     if (is_admin() && !defined('DOING_AJAX'))
         return;
+    // Obtiene el Id de las configuraciones del hotel
+    $hotelSettings = get_page_by_path('configuraciones-generales', OBJECT, 'hotel_settings');
+    $hotelSettingsID = $hotelSettings->ID;
     //Iniciando valores de fecha para aplicar descuentos
-    $fecha_inicio_descuento = '12-02-2024';
-    $fecha_fin_descuento = '16-02-2024';
-    $porcentaje_descuento = 20;
+    $activar_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['activar_descuento'];
+    if (!$activar_descuento) return;
+    $fecha_inicio_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['fecha_inicio_descuento'];
+    $fecha_fin_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['fecha_fin_descuento'];
+    $porcentaje_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['porcentaje_descuento'];
+    $nombre_descuento = get_field('configuraciones_descuentos', $hotelSettingsID)['nombre_descuento'];
 
     // Suponiendo que $cart es el objeto WC_Cart que proporcionaste
 
@@ -922,7 +928,7 @@ function hz_aplicar_descuento_total($cart)
 
 
         // Aplicamos el descuento
-        $cart->add_fee(__('Descuento san valentin', 'woocommerce'), -$descuento);
+        $cart->add_fee(__($nombre_descuento, 'woocommerce'), -$descuento);
     }
 }
 add_action('woocommerce_cart_calculate_fees', 'hz_aplicar_descuento_total');
