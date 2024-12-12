@@ -1271,3 +1271,7 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
   color: #DA1273;
   background-color: white;
 }
+
+.woocommerce-checkout .cart-subtotal {
+  display: none;
+}
