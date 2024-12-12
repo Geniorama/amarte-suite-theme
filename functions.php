@@ -977,7 +977,7 @@ function hz_mostrar_resumen_descuento()
         $mensaje_descuento = sprintf('%s%%', $porcentaje_descuento);
 
         echo '<tr class="cart-discount custom-discount-row">';
-        echo '<th>' . esc_html($nombre_descuento) . ' ' . esc_html($mensaje_descuento) . '</th>';
+        echo '<th>' . esc_html($nombre_descuento) . '</th>';
         echo '<td colspan="2">-' . wc_price($descuento_total) . '</td>';
         echo '</tr>';
     }
