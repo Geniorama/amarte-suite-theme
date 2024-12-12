@@ -911,6 +911,8 @@ function hz_aplicar_descuento_a_precios($cart)
 
         // Verificar si el producto aplica para el descuento
         if (mdw_habitacion_tiene_descuento($habitaciones_que_aplica, $product_id)) {
+            // Al validar que si tiene descuento, se agrega el action que muestra el resumen de la compra con descuentos
+            add_action('woocommerce_review_order_before_order_total', 'hz_mostrar_resumen_descuento');
             $valorPorcentajeDescuento = hz_aplicar_descuento_en_rango_fecha(
                 $fecha_inicio_descuento,
                 $fecha_fin_descuento,
@@ -980,7 +982,6 @@ function hz_mostrar_resumen_descuento()
         echo '</tr>';
     }
 }
-add_action('woocommerce_review_order_before_order_total', 'hz_mostrar_resumen_descuento');
 
 /**
  * Retorna el valor del descuento a aplicar
