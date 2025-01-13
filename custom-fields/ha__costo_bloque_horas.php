@@ -14,7 +14,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_4_horas',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -35,7 +35,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_6_horas',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -56,7 +56,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_12_horas',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -77,7 +77,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_24_horas',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -165,7 +165,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_4_horas_fs',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -186,7 +186,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_6_horas_fs',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -207,7 +207,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_12_horas_fs',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
@@ -228,7 +228,7 @@ acf_add_local_field_group(array(
       'name' => 'costo_de_24_horas_fs',
       'type' => 'number',
       'instructions' => '',
-      'required' => 1,
+      'required' => 0,
       'conditional_logic' => 0,
       'wrapper' => array(
         'width' => '33',
