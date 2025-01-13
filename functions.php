@@ -127,7 +127,7 @@ require get_stylesheet_directory() . '/custom-fields/ha__costo_bloque_horas.php'
 require get_stylesheet_directory() . '/custom-fields/ha__tooltip_decoracion.php'; //Agrega campo para dejar la descripción tooltip para la decoración
 require get_stylesheet_directory() . '/custom-fields/ha__vista_360.php'; //Agrega campo para insertar el shortcode de la vista 360°
 // require get_stylesheet_directory() . '/custom-fields/hs__fields_planes.php'; //Agrega campos personalizados al post type de planes
-require get_stylesheet_directory() . '/custom-fields/hs__configuraciones_generales.php'; //Agrega campos personalizados para las configuraciones del hotel
+// require get_stylesheet_directory() . '/custom-fields/hs__configuraciones_generales.php'; //Agrega campos personalizados para las configuraciones del hotel
 
 
 /**
@@ -466,7 +466,7 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
                     $package_name = 'Día hotelero';
                 }
 
-                if (validarBloquePrecio($duration,  $product->id) || validarBloqueHora($duration, $hasPlan, $end_time)) {
+                if (validarBloquePrecio($duration,  $product) && validarBloqueHora($duration, $hasPlan, $end_time)) {
                     $block_html .= '<option data-duration-display="' . esc_attr($display) . '" data-value="' . get_time_as_iso8601($end_time) . '" value="' . esc_attr($duration) . '">' . $package_name . '</option>';
                 }
             }
@@ -485,13 +485,15 @@ function validarBloqueHora($duration, $hasPlan, $end_time)
     else return ($duration === 5 || $duration === 9 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
 }
 
-function validarBloquePrecio($duration, $productID)
+//Validar que los precios de bloques de horas estén asignados
+function validarBloquePrecio($duration, $product)
 {
-    if (get_field('costo_de_4_horas', $productID) && get_field('costo_de_4_horas_fs', $productID)) {
-        return $duration === 5;
-    }
-    return false;
+if ($duration === 5) return get_field('costo_de_4_horas_fs', $product->id) && get_field('costo_de_4_horas', $product->id);
+if ($duration === 9) return get_field('costo_de_6_horas_fs', $product->id) && get_field('costo_de_6_horas', $product->id);
+if ($duration === 13) return get_field('costo_de_12_horas_fs', $product->id) && get_field('costo_de_12_horas', $product->id);
+if ($duration >= 14) return get_field('costo_de_24_horas_fs', $product->id) && get_field('costo_de_24_horas', $product->id);
 }
+
 /**
  * Agregar input de horas adicionales con sus funcionalidades
  */
@@ -503,10 +505,10 @@ function hz_custom_script()
         jQuery(document).ready(function($) {
             var initialPackageValue = $('#wc-bookings-form-end-time').val();
             var initialExtraHoursValue = $('#wc_bookings_field_hour').val();
-            var extraHoursFieldVisible = initialPackageValue === '5' || initialPackageValue === '7' || initialPackageValue === '13';
+            var extraHoursFieldVisible = initialPackageValue === '5' || initialPackageValue === '9' || initialPackageValue === '13';
             var programmaticChange = false;
             var package5Text = 'Pack 4 horas';
-            var package7Text = 'Pack 8 horas';
+            var package9Text = 'Pack 8 horas';
             var package13Text = 'Pack 12 horas';
 
             $('.woocommerce-content form.cart').keypress(function(event) {
@@ -526,7 +528,7 @@ function hz_custom_script()
 
                 var selectedOption = $(this).find('option:selected');
                 var duration = selectedOption.val();
-                if (duration === '5' || duration === '7' || duration === '13') {
+                if (duration === '5' || duration === '9' || duration === '13') {
                     $('#extra_hours_field').show();
                     extraHoursFieldVisible = true;
                     if ($(window).width() > 1024) {
@@ -552,10 +554,10 @@ function hz_custom_script()
                     return $(this).text() === package5Text;
                 }).val('5');
 
-                // Reset the value of the package of 7 hours
+                // Reset the value of the package of 9 hours
                 $('#wc-bookings-form-end-time option').filter(function() {
-                    return $(this).text() === package7Text;
-                }).val('7');
+                    return $(this).text() === package9Text;
+                }).val('9');
 
                 // Reset the value of the package of 13 hours
                 $('#wc-bookings-form-end-time option').filter(function() {
@@ -580,10 +582,10 @@ function hz_custom_script()
                     return $(this).text() === package5Text;
                 }).val('5');
 
-                // Reset the value of the package of 7 hours
+                // Reset the value of the package of 9 hours
                 $('#wc-bookings-form-end-time option').filter(function() {
-                    return $(this).text() === package7Text;
-                }).val('7');
+                    return $(this).text() === package9Text;
+                }).val('9');
 
                 // Reset the value of the package of 13 hours
                 $('#wc-bookings-form-end-time option').filter(function() {
@@ -737,8 +739,8 @@ function my_custom_checkout_order_review()
             setTimeout(function() {
                 const duracionElement = $("dd.variation-Duracin p");
                 // Obtener el texto actual y convertirlo a un número de horas
-                const duracionActual = duracionElement.text().trim(); // "7 horas"
-                const horas = parseInt(duracionActual); // Convertir "7 horas" a 7
+                const duracionActual = duracionElement.text().trim(); // "9 horas"
+                const horas = parseInt(duracionActual); // Convertir "9 horas" a 9
                 // Restar una hora al valor actual
                 const horasRestadas = horas - 1;
                 // Actualizar el contenido del elemento <dd> con el nuevo valor
