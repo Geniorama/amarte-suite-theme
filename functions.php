@@ -292,10 +292,6 @@ add_action('woocommerce_single_product_summary', 'hz_modal_popup_confirmar_reser
 add_filter('woocommerce_bookings_calculated_booking_cost', 'hz_custom_booking_cost', 10, 3);
 function hz_custom_booking_cost($booking_cost, $product, $data)
 {
-    // A cada bloque se le agrega 1hora más para considerar el tiempo necesario para limpieza
-    $bloque_4hs = 5;
-    $bloque_8hs = 9;
-    $bloque_12hs = 13;
     // Obtener costo por la decoración adicional de la habitación
     $resource_base_costs = $product->get_resource_base_costs();
     if (isset($data['_resource_id'])) $cost_decoration = isset($resource_base_costs[$data['_resource_id']]) && $resource_base_costs[$data['_resource_id']] > 0 ? $resource_base_costs[$data['_resource_id']] : 0;
@@ -364,23 +360,57 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
     /**
      * Calcula el costo de la reserva cuando se está reservando un paquete / plan
      */
-    if (isset($_POST['ha_type_plan_field'])) {
+    $hasPlan = isset($_POST['ha_type_plan_field']);
+    if ($hasPlan) {
+        // A cada bloque se le agrega 1hora más para considerar el tiempo necesario para limpieza
+        $bloque_4hs = 5;
+        $bloque_6hs = 7;
+        $bloque_8hs = 9;
+        $bloque_12hs = 13;        
         $roomTypePlan = sanitize_text_field($_POST['ha_type_plan_field']);
         $hotelSettings = get_page_by_path('configuraciones-generales', OBJECT, 'hotel_settings');
         $hotelSettingsID = $hotelSettings->ID;
         $allPlans = get_field('configuraciones_planes', $hotelSettingsID)['planes'];
         foreach ($allPlans as $plan) {
             if ($plan['tipo_de_plan'] === $roomTypePlan) {
-                if ($booking_duration >= $bloque_4hs && $booking_duration < $bloque_8hs) {
+                if ($booking_duration >= $bloque_4hs) {
                     $horas_extras = $booking_duration - $bloque_4hs;
-                    $cost_by_duration = is_weekend($booking_day_of_week) ?
-                        $plan['costo_4horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
-                        $plan['costo_4horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
-                } elseif ($booking_duration >= $bloque_12hs && $booking_duration < 25 && $departure_time !== '13:00:00') {
+                    if ($plan['costo_4horas_fds'] && $plan['costo_4horas']) {                        
+                        $cost_by_duration = is_weekend($booking_day_of_week) ?
+                            $plan['costo_4horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                            $plan['costo_4horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                    }
+                } 
+                if ($booking_duration >= $bloque_6hs) {
+                    $horas_extras = $booking_duration - $bloque_6hs;
+                    if ($plan['costo_6horas_fds'] && $plan['costo_6horas']) {
+                        $cost_by_duration = is_weekend($booking_day_of_week) ?
+                            $plan['costo_6horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                            $plan['costo_6horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                    }
+                } 
+                if ($booking_duration >= $bloque_8hs) {
+                    $horas_extras = $booking_duration - $bloque_8hs;
+                    if ($plan['costo_8horas_fds'] && $plan['costo_8horas']) {
+                        $cost_by_duration = is_weekend($booking_day_of_week) ?
+                            $plan['costo_8horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                            $plan['costo_8horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                    }
+                } 
+                if ($booking_duration >= $bloque_12hs && $booking_duration < 25 && $departure_time !== '13:00:00') {
                     $horas_extras = $booking_duration - $bloque_12hs;
-                    $cost_by_duration = is_weekend($booking_day_of_week) ?
-                        $plan['costo_12horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
-                        $plan['costo_12horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                    if ($plan['costo_12horas_fds'] && $plan['costo_12horas']) {
+                        $cost_by_duration = is_weekend($booking_day_of_week) ?
+                            $plan['costo_12horas_fds'] + ($horas_extras * get_field('costo_de_hora_adicional_fs', $product->id)) :
+                            $plan['costo_12horas'] + ($horas_extras * get_field('costo_de_hora_adicional', $product->id));
+                    }
+                } 
+                if ($booking_duration >= 14) {
+                    if ($plan['dia_hotelero_fds'] && $plan['dia_hotelero']) {
+                        $cost_by_duration = is_weekend($booking_day_of_week) ?
+                            $plan['dia_hotelero_fds'] :
+                            $plan['dia_hotelero'];
+                    }
                 }
             }
         }
@@ -453,11 +483,12 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
 
             if (validarBloqueHora($duration, $hasPlan, $end_time)) {
                 $package_name = '';
-                $package_price = '';
 
                 // Asignar el nombre del paquete
                 if ($duration === 5) {
                     $package_name = 'Pack 4 horas';
+                } elseif ($duration === 7) {
+                    $package_name = 'Pack 6 horas';
                 } elseif ($duration === 9) {
                     $package_name = 'Pack 8 horas';
                 } elseif ($duration === 13) {
@@ -466,7 +497,7 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
                     $package_name = 'Día hotelero';
                 }
 
-                if (validarBloquePrecio($duration,  $product) && validarBloqueHora($duration, $hasPlan, $end_time)) {
+                if (validarBloquePrecio($duration, $product, $hasPlan)) {
                     $block_html .= '<option data-duration-display="' . esc_attr($display) . '" data-value="' . get_time_as_iso8601($end_time) . '" value="' . esc_attr($duration) . '">' . $package_name . '</option>';
                 }
             }
@@ -481,17 +512,32 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
 
 function validarBloqueHora($duration, $hasPlan, $end_time)
 {
-    if ($hasPlan) return ($duration === 5 || $duration === 13);
+    if ($hasPlan) return ($duration === 5 || $duration === 7 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
     else return ($duration === 5 || $duration === 9 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
 }
 
 //Validar que los precios de bloques de horas estén asignados
-function validarBloquePrecio($duration, $product)
+function validarBloquePrecio($duration, $product, $hasPlan)
 {
-if ($duration === 5) return get_field('costo_de_4_horas_fs', $product->id) && get_field('costo_de_4_horas', $product->id);
-if ($duration === 9) return get_field('costo_de_6_horas_fs', $product->id) && get_field('costo_de_6_horas', $product->id);
-if ($duration === 13) return get_field('costo_de_12_horas_fs', $product->id) && get_field('costo_de_12_horas', $product->id);
-if ($duration >= 14) return get_field('costo_de_24_horas_fs', $product->id) && get_field('costo_de_24_horas', $product->id);
+    if($hasPlan) {
+        $roomTypePlan = sanitize_text_field($_POST['typePlanField']);
+        $hotelSettings = get_page_by_path('configuraciones-generales', OBJECT, 'hotel_settings');
+        $hotelSettingsID = $hotelSettings->ID;
+        $allPlans = get_field('configuraciones_planes', $hotelSettingsID)['planes'];
+        foreach ($allPlans as $plan) {
+            if ($plan['tipo_de_plan'] === $roomTypePlan) {
+                if ($duration === 5) return $plan['costo_4horas_fds'] && $plan['costo_4horas'];
+                if ($duration === 7) return $plan['costo_6horas_fds'] && $plan['costo_6horas'];
+                if ($duration === 13) return $plan['costo_12horas_fds'] && $plan['costo_12horas'];
+                if ($duration >= 14) return $plan['dia_hotelero_fds'] && $plan['dia_hotelero'];
+            }
+        }
+    } else {
+        if ($duration === 5) return get_field('costo_de_4_horas_fs', $product->id) && get_field('costo_de_4_horas', $product->id);
+        if ($duration === 9) return get_field('costo_de_6_horas_fs', $product->id) && get_field('costo_de_6_horas', $product->id);
+        if ($duration === 13) return get_field('costo_de_12_horas_fs', $product->id) && get_field('costo_de_12_horas', $product->id);
+        if ($duration >= 14) return get_field('costo_de_24_horas_fs', $product->id) && get_field('costo_de_24_horas', $product->id);
+    }
 }
 
 /**
