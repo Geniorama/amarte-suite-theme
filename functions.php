@@ -284,9 +284,18 @@ function hz_custom_booking_cost($booking_cost, $product, $data)
     return $total_booking_cost;
 }
 
+/**
+ * Retorna true si el día de la semana es sábado o viernes
+ */
+function is_weekend($booking_day_of_week)
+{
+    return $booking_day_of_week === 'Saturday' || $booking_day_of_week === 'Friday';
+}
 
 /**
  * Filtra las horas de salida para los paquetes de 4, 6, 12 y día hotelero
+ * El filtro se visualiza en el select del formulario de reservas en el single product
+ * Esto es para que no se pueda seleccionar una hora de salida que no corresponda
  */
 add_filter('wc_bookings_get_end_time_html', 'hz_custom_end_time_html', 10, 4);
 function hz_custom_end_time_html($block_html, $data, $blocks, $product)
@@ -373,13 +382,21 @@ function hz_custom_end_time_html($block_html, $data, $blocks, $product)
     return $block_html;
 }
 
+/**
+ * Valida que el bloque de horas seleccionado sea alguno de los permitidos
+ * Siendo estos, 4horas, 8horas, 12horas o Día hotelero
+ */
 function validarBloqueHora($duration, $hasPlan, $end_time)
 {
     if ($hasPlan) return ($duration === 5 || $duration === 7 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
     else return ($duration === 5 || $duration === 9 || $duration === 13 || (strpos(get_time_as_iso8601($end_time), 'T13:00:00') !== false && $duration >= 14));
 }
 
-//Validar que los precios de bloques de horas estén asignados
+/**
+ * Valida que el bloque de horas seleccionado tenga un precio asignado
+ * Esto también aplica para poder mantener el bloque de hora de manera opcional
+ * Por lo que si un bloque de hora no tiene precio asignado, no se mostrará en el select
+ */
 function validarBloquePrecio($duration, $product, $hasPlan)
 {
     if($hasPlan) {
@@ -405,6 +422,16 @@ function validarBloquePrecio($duration, $product, $hasPlan)
 
 /**
  * Agregar input de horas adicionales con sus funcionalidades
+ * Este campo se muestra solo cuando se selecciona un paquete de 4, 8 o 12 horas
+ * y permite al usuario agregar horas adicionales a su reserva
+ * También se encarga de actualizar el valor del select de horas finales
+ * para que refleje el valor total de horas seleccionadas
+ * Además, se encarga de ocultar el campo de horas adicionales cuando no es necesario
+ * y de reajustar el margen de los elementos en el formulario de reservas
+ * para que no se superpongan
+ * También se encarga de resetear los valores de los paquetes de 5, 9 y 13 horas
+ * cuando se selecciona un paquete de 4, 8 o 12 horas
+ * y de resetear el valor del campo de horas adicionales cuando se cambia el paquete
  */
 add_action('wp_footer', 'hz_custom_script');
 function hz_custom_script()
@@ -626,6 +653,8 @@ add_action('woocommerce_checkout_order_review', 'my_custom_checkout_order_review
 
 /**
  * Obtiene el valor de un parámetro de la url
+ * Se envía el nombre del parámetro y retorna su valor
+ * Si el parámetro no está presente, retorna false
  */
 function obtener_parametro_url($parametro)
 {
@@ -645,9 +674,4 @@ function ha_add_booking_form_type_plan_field()
     $typePlan = obtener_parametro_url('type');
     if ($typePlan) echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
     return;
-}
-
-function is_weekend($booking_day_of_week)
-{
-    return $booking_day_of_week === 'Saturday' || $booking_day_of_week === 'Friday';
 }
