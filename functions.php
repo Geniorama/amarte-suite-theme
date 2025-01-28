@@ -439,6 +439,9 @@ add_filter('booking_form_fields', 'custom_order_booking_fields');
 
 /**
  * Hook para solucionar un bug al recibir la información de la habitación a reservar
+ * Lo que hace es remover el hook original y agregar uno personalizado
+ * para que se pueda obtener la información de la habitación a reservar
+ * en el formulario de reservas
  */
 function hz_custom_uxper_check_update_cart()
 {
@@ -503,7 +506,9 @@ function hz_custom_uxper_check_update_cart()
 remove_action('woocommerce_check_cart_items', 'uxper_check_update_cart');
 add_action('woocommerce_check_cart_items', 'hz_custom_uxper_check_update_cart');
 
-// Redirigir al checkout después de agregar un producto al carrito
+/**
+ * Redirigir al checkout después de agregar un producto al carrito
+ */
 add_filter('add_to_cart_redirect', 'hz_add_to_cart_redirect');
 function hz_add_to_cart_redirect()
 {
@@ -513,7 +518,7 @@ function hz_add_to_cart_redirect()
 }
 
 /**
- * Modificar la hora final, para dejar un espacio disponible de una hora entre las reservas
+ * Modifica la hora final, para dejar un espacio disponible de una hora entre las reservas
  */
 function my_custom_checkout_order_review()
 {
@@ -537,6 +542,23 @@ function my_custom_checkout_order_review()
 add_action('woocommerce_checkout_order_review', 'my_custom_checkout_order_review');
 
 /**
+ * Agrega un campo nuevo al booking form para almacenar el valor 'type' obtenido desde el parámetro de la url
+ * Este campo se utiliza para identificar si el producto es un plan o un paquete
+ * Este campo es tipo hidden por lo que no se visualiza en el formulario, 
+ * pero se envía en el POST al agregar el producto al carrito
+ * de modo que en el hook 'woocommerce_bookings_calculated_booking_cost' se pueda obtener su valor
+ * y de esta forma aplicar el precio correspondiente al producto cuando se trata de un plan y 
+ * según el tipo de plan seleccionado
+ */
+add_action('woocommerce_before_booking_form', 'ha_add_booking_form_type_plan_field');
+function ha_add_booking_form_type_plan_field()
+{
+    $typePlan = obtener_parametro_url('type');
+    if ($typePlan) echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
+    return;
+}
+
+/**
  * Obtiene el valor de un parámetro de la url
  * Se envía el nombre del parámetro y retorna su valor
  * Si el parámetro no está presente, retorna false
@@ -548,15 +570,4 @@ function obtener_parametro_url($parametro)
         return sanitize_text_field($_GET[$parametro]);
     }
     return false;
-}
-
-/**
- * Agrega un campo nuevo al booking form para almacenar el valor 'type' obtenido desde el parámetro de la url
- */
-add_action('woocommerce_before_booking_form', 'ha_add_booking_form_type_plan_field');
-function ha_add_booking_form_type_plan_field()
-{
-    $typePlan = obtener_parametro_url('type');
-    if ($typePlan) echo '<input type="hidden" class="input-text" name="ha_type_plan_field" id="ha_type_plan_field" value="' . $typePlan . '"/>';
-    return;
 }
