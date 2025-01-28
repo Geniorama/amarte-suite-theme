@@ -510,7 +510,6 @@ function hz_custom_script()
 /**
  * Una función para reordenar la visualización predeterminada 
  * de los campos en el formulario de reservas de WooCommerce.
- * Ponga esta función en el archivo functions.php de su tema
  */
 function custom_order_booking_fields($fields)
 {
@@ -529,12 +528,11 @@ add_filter('booking_form_fields', 'custom_order_booking_fields');
  */
 function hz_custom_uxper_check_update_cart()
 {
-    // Only run in the Cart or Checkout pages
     if (is_cart() || is_checkout()) {
         global $woocommerce, $product;
         $i = $total_quantity = 0;
 
-        // Loop through all cart products
+        // Loop de todos los productos en el carrito
         foreach ($woocommerce->cart->cart_contents as $product) {
             $reservation_data = get_transient("uxper_ux_room_product_reservation_data_{$product['product_id']}");
             if (!empty($reservation_data)) {
@@ -598,39 +596,6 @@ function hz_add_to_cart_redirect()
     global $woocommerce;
     $redirect_checkout = $woocommerce->cart->get_checkout_url();
     return $redirect_checkout;
-}
-
-
-/**
- * Shortcode para el banner del single product
- */
-if (!function_exists('hz_product_banner_top_func')) {
-
-    add_shortcode('hz_product_banner_top', 'hz_product_banner_top_func');
-    function hz_product_banner_top_func()
-    {
-        global $product;
-
-        $product = wc_get_product(get_the_ID());
-
-        if (is_product()) {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($product->get_id()), 'single-post-thumbnail');
-            $title = get_the_title($product->get_id());
-            $description = $product->get_short_description();
-
-            ob_start(); ?>
-            <div class="hz-product-banner-top">
-                <img src="<?php echo $image[0]; ?>" alt="<?php echo $title; ?>" class="hz-product-banner-top__cover">
-                <div class="container">
-                    <div class="hz-product-banner-top__content">
-                        <h3 class="hz-product-banner-top__title"><?php echo $title; ?></h3>
-                        <p class="hz-product-banner-top__subtitle"><?php echo $description; ?></p>
-                    </div>
-                </div>
-            </div>
-    <?php return ob_get_clean();
-        }
-    }
 }
 
 /**
