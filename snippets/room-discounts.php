@@ -12,6 +12,8 @@ function hz_aplicar_descuento_a_precios($cart)
 
     $hotelSettingsID = $hotelSettings->ID;
     $config_descuento = get_field('configuraciones_descuentos', $hotelSettingsID);
+
+    // Verificar si el descuento está activo
     if (!$config_descuento || !$config_descuento['activar_descuento']) return;
 
     $fecha_inicio_descuento = $config_descuento['fecha_inicio_descuento'];
@@ -71,11 +73,29 @@ function hz_mostrar_resumen_descuento()
     // Verificar si el descuento está activo
     if (!$config_descuento || !$config_descuento['activar_descuento']) return;
 
+    $fecha_inicio_descuento = $config_descuento['fecha_inicio_descuento'];
+    $fecha_fin_descuento = $config_descuento['fecha_fin_descuento'];
+
     // Obtener nombre y porcentaje del descuento
     $nombre_descuento = isset($config_descuento['nombre_descuento']) ? $config_descuento['nombre_descuento'] : __('Descuento aplicado', 'woocommerce');
     $porcentaje_descuento = isset($config_descuento['porcentaje_descuento']) ? $config_descuento['porcentaje_descuento'] : 0;
 
     foreach ($cart->get_cart() as $cart_item) {
+        $fecha_de_reserva = isset($cart_item['booking']['_date']) ? $cart_item['booking']['_date'] : null;
+        if (!$fecha_de_reserva) continue;
+
+        $fecha_de_reserva = date('d-m-Y', strtotime($fecha_de_reserva));
+        
+        $valorPorcentajeDescuento = hz_aplicar_descuento_en_rango_fecha(
+            $fecha_inicio_descuento,
+            $fecha_fin_descuento,
+            $fecha_de_reserva,
+            $porcentaje_descuento
+        );
+
+        if (!$valorPorcentajeDescuento) return;
+        
+        
         $precio_descuento = $cart_item['data']->get_price();
         $cantidad = $cart_item['quantity'];
 
