@@ -42,7 +42,6 @@ add_action('wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20);
 function hz_custom_scripts()
 {
     // Registrar el archivo de JavaScript
-    // wp_register_script('hz_custom_script', get_stylesheet_directory_uri() . '/inc/js/main.js', array('jquery'), '1.0', true);
     wp_enqueue_script('hz_custom_script', get_stylesheet_directory_uri() . '/inc/js/main.js', array('jquery'), '1.0', true);
 
     if (is_product()) {
@@ -126,9 +125,6 @@ require get_stylesheet_directory() . '/custom-fields/ha__caracteristicas_habitac
 require get_stylesheet_directory() . '/custom-fields/ha__costo_bloque_horas.php'; //Agrega los bloques de horas para anotar su precio
 require get_stylesheet_directory() . '/custom-fields/ha__tooltip_decoracion.php'; //Agrega campo para dejar la descripción tooltip para la decoración
 require get_stylesheet_directory() . '/custom-fields/ha__vista_360.php'; //Agrega campo para insertar el shortcode de la vista 360°
-// require get_stylesheet_directory() . '/custom-fields/hs__fields_planes.php'; //Agrega campos personalizados al post type de planes
-// require get_stylesheet_directory() . '/custom-fields/hs__configuraciones_generales.php'; //Agrega campos personalizados para las configuraciones del hotel
-
 
 /**
  * Removiendo los hooks que no son necesarios
@@ -142,7 +138,6 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20); // Remover imagen destacada
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10); // Remover tabs
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20); // Remover productos relacionados
-// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30); // Remover Botón de agregar al carrito
 
 // Agregar botón personalizado en el lugar del botón original
 function agregar_boton_personalizado_al_carrito()
@@ -274,8 +269,6 @@ function hz_modal_popup_confirmar_reserva()
             // Evento click en el botón
             $('#hz-open-modal').on('click', function() {
                 imprimirValoresEnModal();
-                // Agregar aquí el código que deseas ejecutar cuando se hace clic en el botón
-                // Por ejemplo, podrías abrir un modal o realizar una acción específica
             });
         });
     </script>
@@ -611,7 +604,6 @@ function hz_custom_script()
                 }).val('13');
 
                 // Reset the extra hours field to its initial value
-                // $('#wc_bookings_field_hour').val(initialExtraHoursValue);
                 $('#wc_bookings_field_hour').val(0);
             });
 
@@ -659,7 +651,6 @@ function custom_order_booking_fields($fields)
     $reorder[] = $fields['wc_bookings_field_start_date'];  // Calendar or Start Date
     $reorder[] = $fields['wc_bookings_field_duration'];  // Duration
     $reorder[] = $fields['wc_bookings_field_persons'];  // Persons
-    //$reorder[] = $fields['wc_bookings_field_resource'];  // Resource
 
     return $reorder;
 }
