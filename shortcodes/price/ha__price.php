@@ -18,7 +18,7 @@ if (!function_exists('ha_price_plan_func')) {
     );
     $hotelSettings = get_page_by_path('configuraciones-generales', OBJECT, 'hotel_settings');
     $hotelSettingsID = $hotelSettings->ID;
-    $planType = get_field('tipo_de_plan')['value'];
+    $planType = get_field('tipo_de_plan');
     $planes = get_field('configuraciones_planes', $hotelSettingsID)['planes'];
     foreach ($planes as $plan) {
       if ($plan['tipo_de_plan'] === $planType) {

@@ -7,7 +7,7 @@ if (!function_exists('ha_rooms_func')) {
     wp_enqueue_style('ha-rooms-shortcode', get_stylesheet_directory_uri() . '/shortcodes/rooms/ha_rooms.css', array(), '1.0');
 
     $rooms = get_field('habitaciones');
-    $planType = get_field('tipo_de_plan')['value'];
+    $planType = get_field('tipo_de_plan');
     $slug = get_post_field('post_name');
     $html = "";
     $html .= "<div class=ha__rooms>";
