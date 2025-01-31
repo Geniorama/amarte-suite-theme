@@ -135,6 +135,7 @@ require get_stylesheet_directory() . '/snippets/room-discounts.php'; //Aplica un
 require get_stylesheet_directory() . '/snippets/custom-hours-additional-field.php'; //Agrega un campo de horas adicionales al formulario de reservas
 require get_stylesheet_directory() . '/snippets/list-hours-blocks-booking-form.php'; //Lista los bloques de horas en el formulario de reservas
 require get_stylesheet_directory() . '/snippets/calculate-booking-cost.php'; //Calcula el costo de la reserva en función de la cantidad de horas seleccionadas
+require get_stylesheet_directory() . '/snippets/mdw_tabla_precios.php'; //Snippet para mostrar u ocultar tabla de precios
 
 /**
  * Removiendo los hooks que no son necesarios
