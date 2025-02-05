@@ -1,4 +1,8 @@
 <?php
+/**
+ * Shortcode Rooms que imprime las habitaciones seleccionadas para un plan
+ * Este shortcode se usa en el single de planes
+ */
 if (!function_exists('ha_rooms_func')) {
   add_shortcode('ha_rooms', 'ha_rooms_func');
 
