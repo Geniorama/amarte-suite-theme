@@ -23,5 +23,7 @@
             <div class="clear"></div>
         </div>
     </div>
+
+    <?php echo do_shortcode('[INSERT_ELEMENTOR id="16122"]'); ?>
 </div><!-- gdlr-content -->
 <?php get_footer(); ?>
