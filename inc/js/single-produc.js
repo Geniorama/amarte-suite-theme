@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
   // Get 'plan' and 'type' parameters
   var plan = getUrlParameter('plan');
   var type = getUrlParameter('type');
+  var light = getUrlParameter('light');
 
   var decorationOptions = $('#yith-wapo-block-1');
   var onlySingleRoom = $('.ha-single-room');
@@ -40,6 +41,10 @@ jQuery(document).ready(function($) {
         $('#' + labelFor).closest('.yith-wapo-option').hide();
     }
     });
+  }
+
+  if(light) {
+    $('.gdlr-content .elementor-section, .gdlr-content .elementor-element').remove();
   }
 });
 

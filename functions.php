@@ -300,3 +300,13 @@ function obtener_parametro_url($parametro)
     }
     return false;
 }
+
+/**
+ * Agrega la clase hz-light-product en el body cuando en la url se encutra el att light
+ */
+add_filter( 'body_class', function( $classes ){
+    if ( isset($_GET['light']) && $_GET['light'] == '1' && is_product() ) {
+        $classes[] = 'hz-light-product';
+    }
+    return $classes;
+});

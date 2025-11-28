@@ -1275,3 +1275,12 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
 .woocommerce-checkout .cart-subtotal {
   display: none;
 }
+
+.hz-light-product {
+  .gdlr-content {
+    .elementor-section,
+    .elementor-element {
+      display: none;
+    }
+  }
+}
