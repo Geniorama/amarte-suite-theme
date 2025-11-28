@@ -310,3 +310,55 @@ add_filter( 'body_class', function( $classes ){
     }
     return $classes;
 });
+
+/**
+ * Add "Copy Product URLs" meta box in WooCommerce product editor.
+ */
+add_action('edit_form_after_editor', function($post) {
+    if ($post->post_type !== 'product') return;
+
+    $product_url       = get_permalink($post->ID);
+    $product_light_url = $product_url . ( strpos($product_url, '?') === false ? '?light=1' : '&light=1' );
+
+    ?>
+    <div id="copy-urls-box" style="display:none; margin-top:15px; padding:12px; border:1px solid #ddd; background:#fafafa; border-radius:4px;">
+        <strong>URL versión LIGHT:</strong>
+        <input type="text" value="<?php echo esc_url($product_light_url); ?>" id="copy-product-light-url" readonly style="width:100%; margin-top:5px;">
+
+        <button type="button" class="button copy-url-btn" data-target="copy-product-light-url" style="margin-top:5px; width:100%;">
+            Copiar URL Light
+        </button>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Mover el bloque justo debajo del permalink
+        const permalinkRow = document.querySelector('#edit-slug-box');
+        const box = document.querySelector('#copy-urls-box');
+
+        if (permalinkRow && box) {
+            permalinkRow.insertAdjacentElement('afterend', box);
+            box.style.display = 'block';
+        }
+
+        // Función copiar
+        document.querySelectorAll(".copy-url-btn").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var input = document.getElementById(this.dataset.target);
+
+                var temp = document.createElement("input");
+                temp.type = "text";
+                temp.value = input.value;
+
+                document.body.appendChild(temp);
+                temp.select();
+                temp.setSelectionRange(0, 99999);
+
+                document.execCommand("copy");
+                temp.remove();
+            });
+        });
+    });
+    </script>
+    <?php
+});
